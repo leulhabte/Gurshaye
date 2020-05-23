@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Table, Button, Container, Row, Col} from 'react-bootstrap';
+import {Card, Table} from 'react-bootstrap';
 
 class TipTable extends Component{
     render() {
