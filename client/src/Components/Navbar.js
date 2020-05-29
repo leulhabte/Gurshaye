@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Navbar, Nav} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 class Navbars extends Component{
     render(){
@@ -10,9 +11,9 @@ class Navbars extends Component{
                     <Navbar.Toggle/>
                     <Navbar.Collapse>
                         <Nav className="mx-auto">
-                            <Nav.Link className="Link">Home</Nav.Link>
-                            <Nav.Link className="Link">About Us</Nav.Link>
-                            <Nav.Link className="Link">Conatct</Nav.Link>
+                            <Link className="Link" to="/">Home</Link>
+                            <Link className="Link" to="/about">About Us</Link>
+                            <Link className="Link" to="/contact">Conatct</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

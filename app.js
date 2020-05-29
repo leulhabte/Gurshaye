@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 const tips = require('./api/routes/tips');
+const session = require('express-session');
+const passport = require('passport');
 
 dotenv.config();
 
@@ -13,6 +16,18 @@ mongoose.connect(`mongodb+srv://leulhabte:${process.env.MONGO_PASS}@cluster0-sai
 ).then(console.log('Database connected...')).catch(err=>{console.log(err)});
 
 const app = express();
+
+// app.use(session({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: true
+// }));
+
+
+const user = require('./api/routes/user');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 // Handling CORS Error
 app.use((req, res,next)=>{
@@ -29,6 +44,7 @@ app.use((req, res,next)=>{
 });
 
 app.use('/', tips);
+app.use('/', user);
 
 app.use((req, res, next)=>{
     const error = new Error('Not Found');

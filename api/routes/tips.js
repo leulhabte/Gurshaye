@@ -6,44 +6,69 @@ require('../model/gurshaye');
 const Tips = mongoose.model('tips');
 
 routes.post('/save', (req, res)=>{
+    console.log("Invoked");
     console.log(req.body);
     const newTips = {
-        league: "English",
-        team1: "Arsenal",
-        team2: "Manchister United",
-        time: "13:30",
-        date: "May-20-20",
-        tip: "1x"	
+        league: req.body.league,
+        team1: req.body.team1,
+        team2: req.body.team2,
+        time: req.body.time,
+        date: req.body.date,
+        tip: req.body.tip	
     };
 
     new Tips(newTips).save()
-    .then(tip=>{console.log(tip)})
+    .then(tip=>{
+        res.json({
+            message: "saved",
+            data: tip
+        });
+    })
     .catch(err=>{console.log(err)});
-    res.json({
-        message: saved,
-    });
 });
 
 routes.get('/posts',(req, res)=>{
     Tips.find({}).then(tips=>{
-        const tip = {
-            data: tips.map(tips=>{
-                return {
-                    league: tips.league,
-                    team1: tips.team1,
-                    team2: tips.team2,
-                    time: tips.time,
-                    date: tips.date,
-                    tip: tips.tip,
-                }
-            })
-        };
-
+        console.log(tips)
         res.json({
             Total: tips.length,
-            data: tip.data
+            data: tips
         });
     })
+});
+
+routes.put('/edit/:id', (req, res)=>{
+    Tips.findOne({
+        _id: req.params.id
+    }).then((value)=>{
+        value.league = req.body.league,
+        value.team1 = req.body.team1,
+        value.team2 = req.body.team2,
+        value.time = req.body.time,
+        value.date = req.body.date,
+        value.tip = req.body.tip
+        
+        value.save().then(()=>{
+            console.log("Value Saved");
+            res.json({
+                data: value
+            });
+        })
+    });
+});
+
+routes.delete('/remove/:id', (req, res)=>{
+    Tips.deleteOne({
+        _id: req.params.id
+    }).then(()=>{
+        res.json({
+            message: 'Success',
+        });
+    }).catch(err=>{
+        res.json({
+            message: 'Action Failed'
+        });
+    });
 });
 
 module.exports = routes;

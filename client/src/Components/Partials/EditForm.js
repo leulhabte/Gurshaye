@@ -1,57 +1,50 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Form, Container, Col, Row, Button, InputGroup} from 'react-bootstrap';
+import {Form, Container, Col, Row, Button} from 'react-bootstrap';
 
-class FormFill extends Component{
+class EditForm extends Component{
 
-    constructor(prop){
-        super();
-        this.state= {
-            league: "",
-            team1: "",
-            team2: "",
-            time: "",
-            date: "",
-            tip: ""
-        }
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit = event=>{
-        event.preventDefault();
-        let tipData = {
-            league: event.target.League.value,
-            team1: event.target.Team1.value,
-            team2: event.target.Team2.value,
-            time: event.target.Time.value,
-            date: event.target.Date.value,
-            tip: event.target.Tips.value
-        }
-        axios.post('http://localhost:8000/save', tipData)
-        .then(res=>{
-            console.log(res);
-        });
-        alert(tipData);
-        console.log(tipData);
-    }
 
     render() {
+
+        let rediretPage = ()=>{
+            window.location.reload(false);
+        }
+
+        let handlePost = event =>{
+            event.preventDefault();
+
+            let tipData = {
+                league: event.target.League.value,
+                team1: event.target.Team1.value,
+                team2: event.target.Team2.value,
+                time: event.target.Time.value,
+                date: event.target.Date.value,
+                tip: event.target.Tips.value
+            }            
+            
+            axios.put(`http://localhost:8000/edit/${this.props.data._id}`, tipData)
+            .then(res=>{
+                rediretPage();
+                console.log(res);
+            })
+        }
+
         return (
             <div>
-              <Form className="mt-5 Form" onSubmit={this.handleSubmit}>
+              <Form className="mt-5 Form" onSubmit={handlePost}>
                 <Container fluid>
                     <Row>
                         <Col md={5}>
                             <Form.Group>
                                 <Form.Label>League</Form.Label>
-                                <Form.Control type="text" size="lg" name="League"/>
+                                <Form.Control type="text" defaultValue={this.props.data.league} name="League"/>
                             </Form.Group>
                         </Col>
                         <Col md={5}>
                             <Form.Group>
                                 <Form.Label>Tips</Form.Label>
-                                <Form.Control as="select" size="lg" name="Tips">
+                                <Form.Control as="select" name="Tips">
                                     <option defaultValue>1</option>
                                     <option>1x</option>
                                     <option>2</option>
@@ -67,13 +60,13 @@ class FormFill extends Component{
                         <Col md={5}>
                             <Form.Group>
                                 <Form.Label>Team 1</Form.Label>
-                                <Form.Control type="text" size="lg" name="Team1"/>
+                                <Form.Control type="text"  defaultValue={this.props.data.team1} name="Team1"/>
                             </Form.Group>
                         </Col>
                         <Col md={5}>
                             <Form.Group>
                                 <Form.Label>Team 2</Form.Label>
-                                <Form.Control type="text" size="lg" name="Team2"/>
+                                <Form.Control type="text"  defaultValue={this.props.data.team2} name="Team2"/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -81,24 +74,19 @@ class FormFill extends Component{
                         <Col md={5}>
                             <Form.Group>
                                 <Form.Label>Time</Form.Label>
-                                <Form.Control type="time" size="lg" name="Time"/>
+                                <Form.Control type="time"  defaultValue={this.props.data.time} name="Time"/>
                             </Form.Group>
                         </Col>
                         <Col md={5}>
                             <Form.Group>
                                 <Form.Label>Date</Form.Label>
-                                <InputGroup>
-                                    <InputGroup.Append>
-                                        <InputGroup.Text><span className="glyphicon glyphicon-calendar"></span></InputGroup.Text>
-                                    </InputGroup.Append>
-                                    <Form.Control type="date" size="lg" id="datetimepicker1" name="Date"/>
-                                </InputGroup>
+                                    <Form.Control type="date"  defaultValue={this.props.data.date} name="Date"/>
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row className="mt-4">
                         <Col md={10}>
-                            <Button className="btn btn-block" size="lg" type="submit">Add Tip</Button>
+                            <Button className="btn btn-block" type="submit">Update data</Button>
                         </Col>
                     </Row>
                 </Container>
@@ -108,4 +96,4 @@ class FormFill extends Component{
     }
 }
 
-export default FormFill;
+export default EditForm;
