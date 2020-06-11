@@ -71,4 +71,118 @@ routes.delete('/remove/:id', (req, res)=>{
     });
 });
 
+routes.get('/leagues', (req, res)=>{
+    Tips.find({})
+    .then(tips=>{
+        const leagues = [], tempo=[], info=[];
+        var temp, count=1;
+        tips.map(data=>{
+            leagues.push(data.league)
+        });
+        for(var i=0;i<leagues.length; i++){
+            if(leagues[i]!='A'){
+                temp = leagues[i];
+                tempo.push(temp);
+            }else{
+                continue;
+            }
+            for(var j=i+1; j<leagues.length; j++){
+                if(temp == leagues[j]){
+                    count++;
+                    leagues[j]='A'
+                }
+            }
+            info.push({
+                name: tempo[0],
+                count: count
+            });
+            count = 1;
+            tempo.pop();
+
+        }
+        res.json({
+            Total: tips.length,
+            Leagues: info
+        })
+    })
+});
+
+routes.post('/incorrect/:id', (req, res)=>{
+    Tips.findOne({
+        _id: req.params.id
+    }).then(tip=>{
+        tip.correct = 'F'
+        tip.save().then(res.json({tip: tip}))
+    })
+});
+
+routes.get('/overall', (req, res)=>{
+    Tips.find({}).
+    then(tips=>{
+        const overall = [];
+        var count=0, corr;
+        tips.map(data=>{
+            overall.push(data.correct);
+        });
+        for(var i=0; i<overall.length; i++){
+            if(overall[i] == 'F'){
+                count++;
+            }
+        }
+        corr = overall.length - count;
+        res.json({
+            correct: corr,
+            Incorrect: count
+        })
+    })
+});
+
+routes.put('/change/:id', (req, res)=>{
+    Tips.findOne({
+        _id: req.params.id
+    }).then(tip=>{
+        tip.insertedAt = req.body.dt;
+        tip.save().then(res.json({
+            info: tip
+        }));
+    })
+});
+
+routes.get('/stat', (req, res)=>{
+    Tips.find({}).
+    then(tips=>{
+        const insertedAt = [], tempo=[], info=[];
+        var temp, count=1;
+        tips.map(data=>{
+            insertedAt.push(data.insertedAt)
+        });
+        for(var i=0;i<insertedAt.length; i++){
+            if(insertedAt[i]!='A'){
+                var temp = `'${insertedAt[i]}'`.slice(1, 10);
+                tempo.push(temp);
+            }else{
+                continue;
+            }
+            for(var j=i+1; j<insertedAt.length; j++){
+                const date = `'${insertedAt[j]}'`.slice(1, 10)
+                if(temp == date){
+                    count++;
+                    insertedAt[j]='A'
+                }
+            }
+            info.push({
+                name: tempo[0],
+                count: count
+            });
+            count = 1;
+            tempo.pop();
+
+        }
+        res.json({
+            Total: tips.length,
+            statistics: info
+        })
+    })
+});
+
 module.exports = routes;

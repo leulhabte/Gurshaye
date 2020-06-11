@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
-import FormFill from './Partials/FormAdd'
-import Heading from './Partials/Heading'
+import FormFill from './Partials/FormAdd';
+import InsertTips from './Partials/InsertTips';
+import Heading from './Partials/Heading';
+import {CssBaseline} from '@material-ui/core'
+
 
 class AddTips extends Component{
     render(){
         return(
             <div>
-                <div className="Main">
+                <CssBaseline/>
+                <div>
                     <Heading title = "Insert Tips"/>
-                    <FormFill/>
+                    <InsertTips/>
                 </div>                
             </div>
         );

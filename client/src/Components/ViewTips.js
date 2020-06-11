@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import Heading from './Partials/Heading';
-import TipTable from './Partials/TipTable';
+import TipTable from './Partials/ViewTable';
 
 class ViewTips extends Component{
 
     render() {
         return (
-            <div className="Main">
-                <Heading title="View Tips"/>
+            <div>
+                <Heading title="Gurshaye View Tips"/>
                 <TipTable/>
             </div>
         );

@@ -27,6 +27,11 @@ const dataSchema = Schema({
         type: String,
         required: true
     },
+    correct: {
+        type: String,
+        required: true,
+        default: 'N/A'
+    },
     insertedAt : {
         type: Date,
         default: Date.now

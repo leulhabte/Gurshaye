@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './Components/Navbar';
-import Sidebar from './Components/Sidebar';
-import AddTips from './Components/AddTips';
+// import Navbar from './Components/Navbar';
+// import Sidebar from './Components/Sidebar';
+// import AddTips from './Components/AddTips';
 import ManageTip from './Components/Manage';
 import ViewTips from './Components/ViewTips';
-import Home from './Components/Home';
+import Home from './Components/Home2';
+import Statistics from './Components/Statistics'
 import About from './Components/About';
 import ContactUs from './Components/ContactUs';
 import LogIn from './Components/User/Login';
@@ -15,10 +16,15 @@ import Cookies from 'js-cookie';
 import AuthApi from './AuthApi';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import './styling.css';
+import useStyles from './Styling';
+import SlideDrawer from './Components/SideDrawer';
+import InsertTip from './Components/Partials/InsertTips';
+
 
 function App() {
 
   const [auth, setAuth] = useState(false);
+  const classes = useStyles();
 
 
   const handleLogin = (data)=>{
@@ -47,19 +53,18 @@ function App() {
     return (
       <AuthApi.Provider value={{auth, setAuth}}>
       <BrowserRouter>
-          <div className="">
-            <div className="MainContainer d-flex flex-row">
-                <Sidebar logged_status = {auth} handleLogOut = {handleLogOut}/>
-                <Navbar/>
-            </div>
-            <div className="Main-body">
+          <div className={classes.root}>
+            <SlideDrawer/>
+            <div className={classes.content}>
+              <div className={classes.toolbar}/>
               <Switch>
                 <ProtectedRoute path="/" exact component={Home} auth={auth}/>
                 <ProtectedRoute path="/about" component={About} auth={auth} />
                 <ProtectedRoute path="/contact" component={ContactUs} auth={auth}/>
-                <ProtectedRoute path="/add" component={AddTips} auth={auth}/>
+                <ProtectedRoute path="/add" component={InsertTip} auth={auth}/>
                 <ProtectedRoute path="/view" component={ViewTips} auth={auth}/>
                 <ProtectedRoute path="/manage" component={ManageTip} auth={auth}/>
+                <ProtectedRoute path="/stats" component={Statistics} auth={auth}/>
                 <ProtectedLogin path="/login" component={LogIn} handleLogin={handleLogin} auth={auth}/>
                 <Route path="/signup" component={SignUp} auth={auth}/>
                 <Route path="*" component={PageNotfound}/>

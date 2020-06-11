@@ -1,16 +1,22 @@
-import React, {Component} from 'react';
-import {Spinner} from 'react-bootstrap';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-class Loadings extends Component{
-    render() {
-        return (
-            <div className="Loading">
-               <Spinner animation="grow" variant="primary" size="sm"/>
-               <Spinner animation="grow" variant="secondary" size="lg" />
-               <Spinner animation="grow" variant="success" size="sm" />                
-            </div>
-        );
-    }
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(20),
+    },
+  },
+}));
+
+export default function LinearIndeterminate() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <LinearProgress color="primary"/>
+    </div>
+  );
 }
-
-export default Loadings;
