@@ -11,7 +11,7 @@ dotenv.config();
 mongoose.connect(`mongodb+srv://leulhabte:${process.env.MONGO_PASS}@cluster0-saiuw.mongodb.net/test?retryWrites=true&w=majority`,
 {
     useNewUrlParser: true,
-    useUnifiedTopology: false
+    useUnifiedTopology: true
 }
 ).then(console.log('Database connected...')).catch(err=>{console.log(err)});
 

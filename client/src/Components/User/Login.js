@@ -1,10 +1,20 @@
 import React from 'react';
 import Heading from '../Partials/Heading';
 import axios from 'axios';
-import {Form, Col, Row, Container, Button} from 'react-bootstrap';
+import useStyles from '../../Styling';
+import {Link} from 'react-router-dom';
+import {TextField, Grid, Paper, Button, Box, Snackbar} from '@material-ui/core';
+import {AccountCircle, Security, VpnKey, VerifiedUser} from '@material-ui/icons';
 
 const LogIn = props =>{
 
+    const classes = useStyles();
+    const defaultProps = {
+        borderColor: 'text.primary',
+        m: 1,
+        style: { width: '7rem', height: '7rem' },
+
+    };
     const handleLog = event =>{
         event.preventDefault();
         const user = {
@@ -21,32 +31,48 @@ const LogIn = props =>{
             }
         });
     }
-        return (
-            <div className="Main">
-                <Heading title="LogIn"/>
-                <Form className="mt-5" onSubmit={handleLog}>
-                    <Container>
-                        <Row>
-                            <Col xs={6}>
-                            <Form.Group>
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control name="Name" type="text"></Form.Control>
-                            </Form.Group>                               
-                            </Col>
-                        </Row>
-                        <Row>
-                        <Col xs={6}>
-                        <Form.Group>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control name="Pwd" type="password"></Form.Control>
-                        </Form.Group>
-                        <Button type="submit" className="btn btn-block mt-4">Log in</Button>                                
-                        </Col>
-                        </Row>
-                    </Container>
-                </Form>
-            </div>
-        );
+    return(
+        <div>
+            <Box display="flex" justifyContent="center" className={classes.avatarHolder}>
+            <Box borderRadius="50%" {...defaultProps} className={classes.circleAvatar}/>
+            </Box>
+            <form onSubmit={handleLog}>
+                <Paper className={classes.formPaper}>
+                    <Grid container className={classes.formHolder} spacing={6}>
+                        <Grid item xs={11} spacing={1} container className={classes.formGrid}>
+                            <Box className='mt-2'>
+                            <AccountCircle className='mt-2'/>
+                            </Box>
+                            <TextField
+                                label='Username'
+                                name='Name'
+                                className={classes.formField}
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={11} spacing={1} container className={classes.formGrid}>
+                            <Box className='mt-2'>
+                            <Security className='mt-2'/>
+                            </Box>
+                            <TextField
+                                label='Password'
+                                name='Pwd'
+                                className={classes.formField}
+                                type='password'
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={11} spacing={1} container className={classes.formGrid}>
+                            <Button variant='contained' className={classes.formButton} fullWidth type='submit'>Login</Button>
+                        </Grid>
+                        <Grid item xs={11} spacing={1} container>
+                            <Button color='primary' type='submit'><Link to='signup'>Sign up here for New user</Link></Button>
+                        </Grid>
+                    </Grid>                    
+                </Paper>
+            </form>
+        </div>
+    );
 
 }
 

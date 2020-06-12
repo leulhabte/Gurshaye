@@ -6,10 +6,11 @@ import {Menu, Info, ContactMail, Create, Airplay, InsertChart, Settings, Person,
 import useStyles from '../Styling';
 import {Link} from 'react-router-dom'
 
-const SideDrawer = ()=>{
+const SideDrawer = (props)=>{
     
 
     const [mobilScreen, setScreen] = React.useState(true);
+    const [userName, setUserName] = React.useState('Username');
     const classes = useStyles();
 
     const handleDrawer = ()=>{
@@ -50,13 +51,15 @@ const SideDrawer = ()=>{
                 <Box className={classes.listHeader}><Typography>User Profile</Typography></Box>
                 <ListItem>
                     <ListItemIcon><Person className={classes.listIcon}/></ListItemIcon>
-                    <ListItemText className={classes.listText}>User name</ListItemText>
+                    <ListItemText className={classes.listText}>{props.data}</ListItemText>
                 </ListItem>
-                <ListItem>
-                    <ListItemIcon><BorderColor className={classes.listIcon}/></ListItemIcon>
-                    <ListItemText className={classes.listText}>Edit Profile</ListItemText>
-                </ListItem>
-                <ListItem>
+                <Link className={classes.listText} to='/edit' onClick={handleDrawer}>
+                    <ListItem button>
+                        <ListItemIcon><BorderColor className={classes.listIcon}/></ListItemIcon>
+                        <ListItemText className={classes.listText}>Edit Profile</ListItemText>
+                    </ListItem>
+                </Link>
+                <ListItem button onClick={props.handleLogout}>
                     <ListItemIcon><ExitToApp className={classes.listIcon}/></ListItemIcon>
                     <ListItemText className={classes.listText}>Log out</ListItemText>
                 </ListItem>

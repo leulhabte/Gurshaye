@@ -1,82 +1,98 @@
-import React, {Component} from 'react';
-import Heading from '../Partials/Heading';
+import React from 'react';
 import axios from 'axios';
-import {Form, Col, Row, Container, Button} from 'react-bootstrap';
+import useStyles from '../../Styling';
+import {Link} from 'react-router-dom';
+import {TextField, Grid, Paper, Button, Box, Snackbar} from '@material-ui/core';
+import {AccountCircle, Security, VerifiedUser} from '@material-ui/icons';
 
-class SignUp extends Component{
+const SignUp =(props)=>{
+        const classes = useStyles();
+        const defaultProps = {
+            borderColor: 'text.primary',
+            m: 1,
+            style: { width: '7rem', height: '7rem' },
+        
+        };
 
-    render() {
-        return (
-            <div className="Main">
-              <Heading title="Sign Up"/> 
-              <Page history = {this.props.history}/>
-            </div>
-        );
-    }
-}
-
-class Page extends Component{
-    constructor(props){
-        super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit = event =>{
-        event.preventDefault();
-        const user = {
-            name: event.target.Name.value,
-            pwd: event.target.Pwd.value,
-            rpwd: event.target.Rpwd.value,
+        const handleSubmit = event =>{
+            event.preventDefault();
+            const user = {
+                name: event.target.Name.value,
+                pwd: event.target.Pwd.value,
+                rpwd: event.target.Rpwd.value,
+            }
+    
+            axios.post('http://localhost:8000/signup', user)
+            .then(res=>{
+                if(res.data.type === 0){
+                    for(var x in res.data.data){
+                        console.log(res.data.data[x]);
+                        alert(res.data.data[x]);
+                    }
+                }
+                if(res.data.type === 2){
+                    alert("User already Exsist Operation Canceled");
+                }
+                if(res.data.type === 1){
+                    props.history.push('/login');
+                }
+            });
         }
 
-        axios.post('http://localhost:8000/signup', user)
-        .then(res=>{
-            if(res.data.type === 0){
-                for(var x in res.data.data){
-                    console.log(res.data.data[x]);
-                    alert(res.data.data[x]);
-                }
-            }
-            if(res.data.type === 2){
-                alert("User already Exsist Operation Canceled");
-            }
-            if(res.data.type === 1){
-                this.props.history.push('/login');
-            }
-        });
-    }
-
-    render() {
         return (
             <div>
-                <Form className="mt-5" onSubmit={this.handleSubmit}>
-                    <Container fluid>
-                        <Row>
-                            <Col xs={8}>
-                            <Form.Group>
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control name="Name" type="text"></Form.Control>
-                            </Form.Group>                               
-                            </Col>
-                        </Row>
-                        <Row>
-                        <Col xs={8}>
-                        <Form.Group>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control name="Pwd" type="password"></Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Re-Type Password</Form.Label>
-                            <Form.Control name="Rpwd" type="password"></Form.Control>
-                        </Form.Group>
-                        <Button type="submit" className="btn btn-block mt-4">SignUp</Button>                                
-                        </Col>
-                        </Row>
-                    </Container>
-                </Form>
+                <Box display="flex" justifyContent="center" className={classes.avatarHolder}>
+                <Box borderRadius="50%" {...defaultProps} className={classes.circleAvatar}/>
+                </Box>
+                <form onSubmit={handleSubmit}>
+                    <Paper className={classes.formPaper}>
+                        <Grid container className={classes.formHolder} spacing={6}>
+                            <Grid item xs={11} spacing={1} container className={classes.formGrid}>
+                                <Box className='mt-2'>
+                                <AccountCircle className='mt-2'/>
+                                </Box>
+                                <TextField
+                                    label='Username'
+                                    name='Name'
+                                    className={classes.formField}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={11} spacing={1} container className={classes.formGrid}>
+                                <Box className='mt-2'>
+                                <Security className='mt-2'/>
+                                </Box>
+                                <TextField
+                                    label='Password'
+                                    name='Pwd'
+                                    className={classes.formField}
+                                    type='password'
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={11} spacing={1} container className={classes.formGrid}>
+                                <Box className='mt-2'>
+                                <VerifiedUser className='mt-2'/>
+                                </Box>
+                                <TextField
+                                    label='Retype Password'
+                                    name='Rpwd'
+                                    className={classes.formField}
+                                    type='password'
+                                    required    
+                                />
+                            </Grid>
+                            <Grid item xs={11} spacing={1} container className={classes.formGrid}>
+                                <Button variant='contained' className={classes.formButton} fullWidth type='submit'>Create Profile</Button>
+                            </Grid>
+                            <Grid item xs={11} spacing={1} container>
+                                <Button color='primary' type='submit'><Link to='login'>LogIn if you already have an account</Link></Button>
+                            </Grid>
+                        </Grid>                    
+                    </Paper>
+                </form>
             </div>
         );
-    }
 }
 
 export default SignUp;

@@ -1,5 +1,6 @@
 import {makeStyles} from '@material-ui/core';
 import Image from './res/bg.jpg';
+import Image2 from './res/user.jpg';
 
 const drawerWidth = 220;
 const useStyles = makeStyles((theme)=>({
@@ -194,7 +195,44 @@ const useStyles = makeStyles((theme)=>({
         display: 'flex',
         justifyContent: 'center',
         fontSize: '19px'
-    }
+    },
+    formGrid:{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center!important'
+    },
+    formField:{
+        flexGrow: 1,
+        marginLeft: theme.spacing(2),
+        borderColor: 'green !important'
+    },
+    formHolder:{
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    circleAvatar:{
+        background: `url('${Image2}') no-repeat center center`,
+        backgroundSize: 'contain',
+        position: 'absolute',
+        zIndex: 1,
+        top: '70px'
+    },
+    formPaper:{
+        position: 'relative',
+        padding: theme.spacing(2),
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(8),
+        margin: theme.spacing(10),
+    },
+    formButton:{
+        backgroundColor: 'rgb(128, 188, 49)',
+        color: 'white',
+        height: '3rem',
+        '&:hover':{
+            backgroundColor: 'rgb(113, 174,33)'
+        }
+    },
 }));
 
 export default useStyles;

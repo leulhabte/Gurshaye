@@ -27,10 +27,10 @@ route.post('/login', (req, res)=>{
                     },
                     process.env.MONGO_PASS,
                     {
-                        expiresIn: '1m'
+                        expiresIn: '2m'
                     }
                     );
-                    res.cookie('jwt', token, {httpOnly: true})
+                    // res.cookie('jwt', token, {httpOnly: true})
                     console.log(token);
                     res.json({
                         type: 1,
@@ -113,6 +113,53 @@ route.get('/remove/:name', (req, res)=>{
         {_id: req.params.name}
     )
     .then(()=>{res.json({message: 'Deleted'})})
+});
+
+route.put('/userEdit', (req, res)=>{
+    User.findOne().then(user=>{
+        bcrypt.compare(req.body.ppwd, user.password, (err, isMatched)=>{
+            if(!err){
+                if(isMatched){
+                    let error = [];
+                    if(req.body.pwd != req.body.rpwd){
+                        error.push('Password didn\'t match');
+                    }
+                    if(req.body.pwd.length < 4){
+                        error.push('Password must be at least 4 characters long')
+                    }
+                    if(error.length == 0){
+                        bcrypt.genSalt(10, (err, salt)=>{
+                            bcrypt.hash(req.body.pwd, salt, (err, hash)=>{
+                                req.body.pwd = hash;
+                                user.name = req.body.name
+                                user.password = req.body.pwd
+                                user.save().then(res.json({
+                                    type: 1,
+                                    message: 'Profile Updated'
+                                }))
+                            })
+                        })
+                    }else{
+                        res.json({
+                            type: 0,
+                            error: error
+                        })
+                    }
+                }else{
+                    res.json({
+                        type: 2,
+                        error: "Incorrect Password"
+                    })                    
+                }
+            }
+
+        })
+    }).catch(err=>{
+        res.json({
+            message: "error",
+            error: err.message
+        })
+    })
 });
 
 route.get('/get', (req, res)=>{

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import useStyles from '../../Styling';
+import {Link} from 'react-router-dom';
 import {Grid, Typography, Paper, Card, CardContent, CardHeader, Container, IconButton} from '@material-ui/core'
 import {DoneAll, HighlightOff, Grain} from '@material-ui/icons'
 
@@ -76,7 +77,7 @@ const StatHeader = ()=>{
                             </Paper>
                             <Card>
                             <CardContent style={{paddingBottom: '2.4rem'}}>
-                                <Typography variant='h5'>Select Incorrect Tips <IconButton><Grain/></IconButton></Typography>
+                                <Typography variant='h5'>Select Incorrect Tips <IconButton><Link to='/fill'><Grain/></Link></IconButton></Typography>
                             </CardContent>
                             </Card>
                     </Paper>

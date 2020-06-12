@@ -9,6 +9,7 @@ import {Table, TableContainer, TableHead, TableBody,
 TableCell, TableRow, Paper, Container, Grid, Button, 
 Dialog, DialogContent, DialogActions, DialogContentText,
 TextField, FormControl, InputLabel, Snackbar, Select, MenuItem, Card, Typography, IconButton} from '@material-ui/core';
+import {withRouter} from 'react-router-dom';
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -17,7 +18,7 @@ import {
 import DateFnsUtils from '@date-io/date-fns'
 import 'date-fns';
 
-const ManageTips = ()=>{
+const ManageTips = (props)=>{
     
     const classes = useStyles();
     const [dataId, setDatas] = React.useState('');
@@ -42,7 +43,7 @@ const ManageTips = ()=>{
 
     React.useEffect(()=>{
         callApi()
-    }, []);
+    });
 
     const handleDialog = ()=>{
         setDialog(!dialog);
@@ -52,7 +53,7 @@ const ManageTips = ()=>{
         axios.delete(`http://localhost:8000/remove/${dataId}`)
         .then(res=>{
             handleDialog();
-            rediretPage(); 
+            props.history.push('/manage');
         });
     }
 
@@ -244,4 +245,4 @@ const ManageTips = ()=>{
     )
 }
 
-export default ManageTips;
+export default withRouter(ManageTips);
