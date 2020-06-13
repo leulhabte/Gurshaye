@@ -233,6 +233,24 @@ const useStyles = makeStyles((theme)=>({
             backgroundColor: 'rgb(113, 174,33)'
         }
     },
+    wrapper:{
+        position: 'relative'
+    },
+    fabbtn:{
+        position: 'absolute',
+        top: -2,
+        left: -2
+    },
+    fabHolder:{
+        display: 'flex',
+        flexDirection: 'row-reverse',
+        position: 'relative',
+        padding: 0
+    },
+    fabSub:{
+        position: 'absolute',
+        top: '-30px',
+    }
 }));
 
 export default useStyles;

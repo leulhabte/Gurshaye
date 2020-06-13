@@ -148,6 +148,22 @@ routes.put('/change/:id', (req, res)=>{
     })
 });
 
+routes.get('/unchecked', (req, res)=>{
+    Tips.find().
+    then(tips=>{
+        const info = []
+        tips.map(data=>{
+            if(data.correct == 'N/A'){
+                info.push(data)
+            }
+        });
+
+        res.json({
+            tip: info
+        })
+    });
+})
+
 routes.get('/stat', (req, res)=>{
     Tips.find({}).
     then(tips=>{
