@@ -157,7 +157,35 @@ routes.get('/unchecked', (req, res)=>{
                 info.push(data)
             }
         });
+        
+        res.json({
+            tip: info
+        })
+    });
+})
 
+routes.get('/unchecked2', (req, res)=>{
+    Tips.find().
+    then(tips=>{
+        const info = []
+        var temp;
+        tips.map(data=>{
+            if(data.correct == 'N/A'){
+               temp = {
+                   info: {
+                       _id: data._id,
+                       correct: data.correct,
+                       league: data.league,
+                       match: `${data.team1} vs ${data.team2}`,
+                       time: data.time.slice(11,16),
+                       date: data.date.slice(0,10),
+                       tip: data.tip,
+                       insertedAt: data.insertedAt
+                   }
+               }
+               info.push(temp.info);
+            }
+        });
         res.json({
             tip: info
         })

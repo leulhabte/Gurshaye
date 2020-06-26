@@ -28,12 +28,12 @@ const ManageUser = (props)=>{
         userProfile)
         .then(res=>{
             console.log(res.data)
-            if(res.data.type == 2){
+            if(res.data.type === 2){
                 setMessage(res.data.error);
                 setOpen(true);
             }
-            if(res.data.type == 0){
-                if(res.data.error.length == 2){
+            if(res.data.type === 0){
+                if(res.data.error.length === 2){
                     setMessage(`${res.data.error[0]} and ${res.data.error[1]}`);
                     setOpen(true);
                 }else{
@@ -41,7 +41,7 @@ const ManageUser = (props)=>{
                     setOpen(true);
                 }
             }
-            if(res.data.type == 1){
+            if(res.data.type === 1){
                 props.handleLogOut()
                 console.log("yesss")
             }

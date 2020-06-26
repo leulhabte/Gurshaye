@@ -1,16 +1,16 @@
 import React from 'react';
 import useStyles from '../Styling'
-import {Container, Typography, Grid, Card, CardActionArea, CardActions, CardContent, IconButton, Button, CardHeader} from '@material-ui/core';
-import {Menu, Info, ContactMail, Create, Airplay, InsertChart, Settings, Person, ExitToApp, BorderColor, Dashboard} from '@material-ui/icons';
+import {Container, Typography, Grid, Card, CardActionArea, CardActions, CardContent, Button, CardHeader} from '@material-ui/core';
+import {Create, Airplay, InsertChart, Settings} from '@material-ui/icons';
 
-const Home = ()=>{
+const Home = (props)=>{
 
     const classes = useStyles();
 
     return(
         <div>
-           <Container className={classes.container} maxWidth='xl'>
-               <Container className={classes.overlay}></Container>
+           <Container className={classes.containers} maxWidth='xl'>
+               <Typography component='div' className={classes.overlay}></Typography>
                 <Typography component="div" className={classes.title}>
                     <Typography variant='h3' className={classes.mainTitle}>Welcom To Gurshaye</Typography>
                     <Typography variant='h6' className={classes.subTitle}>Betting tip provider</Typography>
@@ -26,7 +26,7 @@ const Home = ()=>{
                             />
                             <CardActionArea>
                                 <CardContent>
-                                    <Typography variant='h6' component='h4'>Insert Tip<IconButton className={classes.cardIcon}><Create/></IconButton></Typography>
+                                    <Typography variant='h6' component='div'>Insert Tip<Create className={classes.cardIcon}/></Typography>
                                     <Typography variant='body2' component='p'>
                                         To provide the user with a best reliable
                                         betting tips of different leagues from 
@@ -47,7 +47,7 @@ const Home = ()=>{
                             />
                             <CardActionArea>
                                 <CardContent>
-                                    <Typography variant='h6' component='h4'>View Tip<IconButton className={classes.cardIcon}><Airplay/></IconButton></Typography>
+                                    <Typography variant='h6' component='h4'>View Tip<Airplay className={classes.cardIcon}/></Typography>
                                     <Typography variant='body2' component='p'>
                                         Allows you to view the betting tips
                                         that are inserted in a clear, sorted and managed way
@@ -67,7 +67,7 @@ const Home = ()=>{
                             />
                             <CardActionArea>
                                 <CardContent>
-                                    <Typography variant='h6' component='h4'>Manage Tips<IconButton className={classes.cardIcon}><Settings/></IconButton></Typography>
+                                    <Typography variant='h6' component='h4'>Manage Tips<Settings className={classes.cardIcon}/></Typography>
                                     <Typography variant='body2' component='p'>
                                         Allows you to manage the betting tips
                                         inserted easily and efficiently in a more
@@ -88,7 +88,7 @@ const Home = ()=>{
                             />
                             <CardActionArea>
                                 <CardContent>
-                                    <Typography variant='h6' component='h4'>Statistics<IconButton className={classes.cardIcon}><InsertChart/></IconButton></Typography>
+                                    <Typography variant='h6' component='h4'>Statistics<InsertChart className={classes.cardIcon}/></Typography>
                                     <Typography variant='body2' component='p'>
                                         Provides you with analytical data of 
                                         the betting predictions in a summarized

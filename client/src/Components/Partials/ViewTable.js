@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 import useStyles from '../../Styling';
-import {Equalizer} from '@material-ui/icons'
-import {Table, TableContainer, TableHead, TableBody, TableCell, TableRow, Paper, Container, Card, Grid, Typography, Box} from '@material-ui/core'
+import {Equalizer, CallToAction} from '@material-ui/icons'
+import {Table, TableContainer, TableHead, TableBody, TableCell, TableRow, Paper, Container, Grid, Typography} from '@material-ui/core'
 
 const ViewTable = ()=>{
     
@@ -17,19 +17,18 @@ const ViewTable = ()=>{
             setData(res.data.data);
             setCount(res.data.Total);
             setLoading(true);
-            console.log(apiData);
         });
     }
 
     React.useEffect(()=>{
-        callApi()
-    }, []);
+        callApi();
+    },[]);
 
     return(
         <div>
             {loading ? 
             <Container maxWidth='xl' className={classes.tableHolder}>
-                <Grid container spacing='3' className={classes.subHeading}>
+                <Grid container spacing={3} className={classes.subHeading}>
                     <Grid item md={4} xs={12}>
                         <Paper className={classes.paperHeading}>
                             <div className="d-flex">
@@ -42,7 +41,7 @@ const ViewTable = ()=>{
                     <Grid item md={8} xs={12}>
                         <Paper className={classes.paperHeading2}>
                             <div className="d-flex">
-                                <Equalizer className="ml-2"/>
+                                <CallToAction className="ml-2"/>
                                 <Typography component='h4' className="ml-5">All Predictions can be updated </Typography>
                             </div>
                         </Paper>
@@ -50,7 +49,7 @@ const ViewTable = ()=>{
                 </Grid>                
                 <TableContainer component={Paper} className={classes.tableContainer}>
                 <Table stickyHeader aria-label="sticky table">
-                    <TableHead component={Card}>
+                    <TableHead>
                         <TableRow>
                             <TableCell className={classes.tableHead}>Time</TableCell>
                             <TableCell className={classes.tableHead} align='center'>League</TableCell>

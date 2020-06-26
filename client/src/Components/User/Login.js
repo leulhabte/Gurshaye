@@ -1,10 +1,9 @@
 import React from 'react';
-import Heading from '../Partials/Heading';
 import axios from 'axios';
 import useStyles from '../../Styling';
 import {Link} from 'react-router-dom';
-import {TextField, Grid, Paper, Button, Box, Snackbar} from '@material-ui/core';
-import {AccountCircle, Security, VpnKey, VerifiedUser} from '@material-ui/icons';
+import {TextField, Grid, Paper, Button, Box} from '@material-ui/core';
+import {AccountCircle, Security} from '@material-ui/icons';
 
 const LogIn = props =>{
 

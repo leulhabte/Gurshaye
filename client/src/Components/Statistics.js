@@ -3,11 +3,11 @@ import Heading from './Partials/Heading';
 import StatHeader from './Partials/StatHeader';
 import StatBody from './Partials/StatBody';
 
-const Statistics = ()=>{
+const Statistics = (props)=>{
     return(
         <div>
             <Heading title="Gurshaye Statistics"/>
-            <StatHeader/>
+            <StatHeader history={props.history}/>
             <StatBody/>
         </div>
     );

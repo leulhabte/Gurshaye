@@ -8,7 +8,7 @@ import axios from 'axios';
 import Loading from './Loading';
 import useStyles from '../../Styling';
 import {Equalizer, AddCircle, Cancel} from '@material-ui/icons';
-import {Table, TableContainer, TableHead, TableBody, TableCell, TableRow, Paper, Container, Card, Grid, Typography, Tooltip, Box} from '@material-ui/core'
+import {Table, TableContainer, TableHead, TableBody, TableCell, TableRow, Paper, Container, Grid, Typography, Tooltip, Checkbox} from '@material-ui/core'
 
 
 const InTable = ()=>{
@@ -17,14 +17,17 @@ const InTable = ()=>{
     const [success, setSuccess] = React.useState(false);
     const [check, setCheck] = React.useState(false);
     const [loadingProgress, setProgress] = React.useState(false);
-    const [switches, setSwitch] = React.useState(false);
     const [data, setData] = React.useState([]);
     const [ids, setIds] = React.useState([])
     const classes = useStyles();
-    const coll = [];
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChange = (event) => {
+      setChecked(event.target.checked);
+    };
 
     const handleClick = ()=>{
-        if(check == true){
+        if(check === true){
             var x;
             if(ids.length > 0){
                 setProgress(true);
@@ -53,7 +56,7 @@ const InTable = ()=>{
         axios.get('http://localhost:8000/unchecked')
         .then(res=>{
             setData(res.data.tip);
-            if(res.data.tip.length == 0){
+            if(res.data.tip.length === 0){
                 setCheck(false);
             }else{
                 setCheck(true)
@@ -72,7 +75,7 @@ const InTable = ()=>{
         <div>
             {loading ? 
             <Container maxWidth='xl' className={classes.tableHolder}>
-                <Grid container spacing='3' className={classes.subHeading}>
+                <Grid container spacing={3} className={classes.subHeading}>
                     <Grid item md={4} xs={12}>
                         <Paper className={classes.paperHeading}>
                             <div className="d-flex">
@@ -90,10 +93,10 @@ const InTable = ()=>{
                             </div>
                         </Paper>
                     </Grid>
-                </Grid>                
+                </Grid>               
                 <TableContainer component={Paper} className={classes.tableContainer}>
                 <Table stickyHeader aria-label="sticky table">
-                    <TableHead component={Card}>
+                    <TableHead>
                         <TableRow>
                             <TableCell className={classes.tableHead}>Time</TableCell>
                             <TableCell className={classes.tableHead} align='center'>League</TableCell>
@@ -112,16 +115,21 @@ const InTable = ()=>{
                                 <TableCell align='center'>{data.team1} vs {data.team2}</TableCell>
                                 <TableCell>{data.tip}</TableCell>
                                 <TableCell align='center'>
-                                    <IconButton
+                                    <Checkbox
+                                        checked={checked}
+                                        onChange={handleChange}
+                                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                                    />                                     
+                                    {/* <IconButton
                                         onClick={()=>{
                                             var flag= false;
                                             var x;
                                             for(x of ids){
-                                                if(data._id == x){
+                                                if(data._id === x){
                                                     flag = true;
                                                 }
                                             }
-                                            if(flag == false){
+                                            if(flag === false){
                                                 setIds(ids.concat(data._id));
                                             }   
                                         }}
@@ -129,12 +137,12 @@ const InTable = ()=>{
                                     <IconButton
                                         onClick={()=>{
                                             for(var i=0; i< ids.length; i++){
-                                                if(ids[i] == data._id){
+                                                if(ids[i] === data._id){
                                                     ids.splice(i, 1);
                                                 }
                                             }                                            
                                         }}
-                                    ><Cancel/></IconButton>
+                                    ><Cancel/></IconButton> */}
                                 </TableCell>
                             </TableRow>
                         ))}

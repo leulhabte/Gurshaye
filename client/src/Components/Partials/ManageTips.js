@@ -4,11 +4,11 @@ import Loading from './Loading';
 import useStyles from '../../Styling';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import {Equalizer} from '@material-ui/icons';
+import {Equalizer, TrackChanges} from '@material-ui/icons';
 import {Table, TableContainer, TableHead, TableBody, 
 TableCell, TableRow, Paper, Container, Grid, Button, 
 Dialog, DialogContent, DialogActions, DialogContentText,
-TextField, FormControl, InputLabel, Snackbar, Select, MenuItem, Card, Typography, IconButton} from '@material-ui/core';
+TextField, FormControl, InputLabel, Select, MenuItem, Typography, IconButton} from '@material-ui/core';
 import {withRouter} from 'react-router-dom';
 import {
     MuiPickersUtilsProvider,
@@ -25,7 +25,6 @@ const ManageTips = (props)=>{
     const [open, setOpen] = React.useState(false);
     const [data, setValue] = React.useState({});
     const [tipValue, setTip] = React.useState(1);
-    const [change, setChange] = React.useState(0);
     const [dialog, setDialog] = React.useState(false);
     const [apiData, setData] = React.useState([]);
     const [totalCount, setCount] = React.useState(0);
@@ -170,7 +169,7 @@ const ManageTips = (props)=>{
         <div>
             {loading ? 
             <Container maxWidth='lg' className={classes.tableHolder}>
-               <Grid container spacing='3' className={classes.subHeading}>
+               <Grid container spacing={3} className={classes.subHeading}>
                     <Grid item md={4} xs={12}>
                         <Paper className={classes.paperHeading}>
                             <div className="d-flex">
@@ -183,7 +182,7 @@ const ManageTips = (props)=>{
                     <Grid item md={4} xs={12}>
                         <Paper className={classes.paperHeading2}>
                             <div className="d-flex">
-                                <Equalizer className="ml-2"/>
+                                <TrackChanges className="ml-2"/>
                                 <Typography component='h4' className="ml-5">Changes Made</Typography>
                             </div>
                             <Typography component='h4' className="mr-4">3</Typography>
@@ -192,7 +191,7 @@ const ManageTips = (props)=>{
                 </Grid>                  
                 <TableContainer component={Paper} className={classes.tableContainer}>
                 <Table stickyHeader aria-label="sticky table">
-                    <TableHead component={Card}>
+                    <TableHead>
                         <TableRow>
                             <TableCell className={classes.tableHead}>Time</TableCell>
                             <TableCell className={classes.tableHead} align='left'>League</TableCell>

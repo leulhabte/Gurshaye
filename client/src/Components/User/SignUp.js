@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import useStyles from '../../Styling';
 import {Link} from 'react-router-dom';
-import {TextField, Grid, Paper, Button, Box, Snackbar} from '@material-ui/core';
+import {TextField, Grid, Paper, Button, Box} from '@material-ui/core';
 import {AccountCircle, Security, VerifiedUser} from '@material-ui/icons';
 
 const SignUp =(props)=>{

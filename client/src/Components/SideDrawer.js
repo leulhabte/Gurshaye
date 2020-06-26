@@ -1,7 +1,7 @@
 import React from 'react';
 import {AppBar, Hidden, Drawer, 
 Divider, List, Toolbar, IconButton, 
-Typography, ListItemIcon, ListItemText, ListItem, Box, Tooltip, Container} from '@material-ui/core';
+Typography, ListItemIcon, ListItemText, ListItem, Box, Tooltip} from '@material-ui/core';
 import {Menu, Info, ContactMail, Create, Airplay, InsertChart, Settings, Person, ExitToApp, BorderColor, Dashboard} from '@material-ui/icons';
 import useStyles from '../Styling';
 import {Link} from 'react-router-dom'
@@ -10,7 +10,6 @@ const SideDrawer = (props)=>{
     
 
     const [mobilScreen, setScreen] = React.useState(true);
-    const [userName, setUserName] = React.useState('Username');
     const classes = useStyles();
 
     const handleDrawer = ()=>{

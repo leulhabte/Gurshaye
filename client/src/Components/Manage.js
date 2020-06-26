@@ -3,9 +3,6 @@ import Heading from './Partials/Heading';
 import ManageTable from './Partials/ManageTips';
 
 class ManageTip extends Component{
-    constructor(props){
-        super(props);
-    }
     render() {
         return (
             <div>

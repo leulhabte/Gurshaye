@@ -22,10 +22,6 @@ const useStyles = makeStyles((theme)=>({
     IconColor:{
         color: "white"
     },
-    mainHeader:{
-        backgroundColor: "rgb(22, 55, 70)",
-        padding: theme.spacing(2)   
-    },
     drawer:{
         [theme.breakpoints.up('md')]:{
             width: drawerWidth,
@@ -52,7 +48,7 @@ const useStyles = makeStyles((theme)=>({
         flexGrow: 1,
         padding: theme.spacing(0)
     },
-    container: {
+    containers: {
         // background: "rgb(22, 55, 70)",
         display: 'flex',
         justifyContent: 'center',
@@ -117,7 +113,7 @@ const useStyles = makeStyles((theme)=>({
     },
     inputHolder:{
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'start',
         alignItems: 'center',
     },
     selectField:{
@@ -134,11 +130,11 @@ const useStyles = makeStyles((theme)=>({
         borderLeft: '5px solid blue'
     },
     submitBtn:{
-        backgroundColor: 'rgb(22, 55, 70)',
+        backgroundColor: 'rgb(128, 188, 49)',
         color: 'white',
         height: '3rem',
         '&:hover':{
-            backgroundColor: 'rgb(16, 42, 53)' 
+            backgroundColor: 'rgb(113, 174,33)' 
         }
     },
     tableHolder:{

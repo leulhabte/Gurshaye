@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Container, Typography, Grid, Card, Paper} from '@material-ui/core';
+import {Container, Typography, Grid, Paper} from '@material-ui/core';
 import Chart from 'react-apexcharts';
 
 const StatBody = ()=>{
@@ -23,6 +23,7 @@ const StatBody = ()=>{
             data: []
         }
     ]);
+    
     const callApi = ()=>{
         axios.get('http://localhost:8000/leagues')
         .then(res=>{
@@ -35,7 +36,6 @@ const StatBody = ()=>{
             const lable = {labels: leagues}
             setOption(lable);
             setSeries(count);
-            console.log(count);
         })
     }
 

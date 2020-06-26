@@ -18,6 +18,7 @@ import './styling.css';
 import useStyles from './Styling';
 import SlideDrawer from './Components/SideDrawer';
 import InsertTip from './Components/Partials/InsertTips';
+import './App.css'
 
 
 function App() {

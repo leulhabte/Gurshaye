@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Button, TextField, FormControl, InputLabel, Input, Snackbar, FormGroup, Grid, Container, Select, MenuItem, Box} from '@material-ui/core';
+import {Button, TextField, FormControl, InputLabel, Snackbar, Grid, Container, Select, MenuItem, Card, CardContent} from '@material-ui/core';
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -55,61 +55,66 @@ const  FormFill = ()=>{
         return (
             <div>
                 <Heading title='Gurshaye Add Tips'/>
-                <form onSubmit={handleSubmit}>
-                    <Container fixed display='flex' justifyContent='center' className='mt-5'>
-                        <Grid container spacing={5} className={classes.inputHolder}>
-                            <Grid item md={5} xs={10} >
-                                <TextField label='League' fullWidth name='League'/>
-                            </Grid>
-                            <Grid item md={5} xs={10}>
-                                <FormControl fullWidth>
-                                    <InputLabel>Tips</InputLabel>
-                                    <Select
-                                        value={tipValue}
-                                        onChange={handleTipValue}
-                                    >
-                                        <MenuItem value={'1'} fullWidth>1</MenuItem>
-                                        <MenuItem value={'1x'}>1x</MenuItem>
-                                        <MenuItem value={'2'}>2</MenuItem>
-                                        <MenuItem value={'2x'}>2x</MenuItem>
-                                        <MenuItem value={'Over 2.5'}>Over 2.5</MenuItem>
-                                        <MenuItem value={'Under 2.5'}>Over 2.5</MenuItem>
-                                        <MenuItem value={'BTTS'}>BTTS</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-                            <Grid item md={5} xs={10}>
-                                <TextField label='Team 1' fullWidth name='Team1'/>
-                            </Grid>
-                            <Grid item md={5} xs={10}>
-                                <TextField label='Team 2' fullWidth name='Team2'/>
-                            </Grid>
-                            <Grid item md={5} xs={10}>
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                        <KeyboardTimePicker
-                                            fullWidth
-                                            label='Time Picker'
-                                            value={macthTime}
-                                            onChange={handleTime}
-                                        />
-                                </MuiPickersUtilsProvider>        
-                            </Grid>
-                            <Grid item md={5} xs={10}>
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                        <KeyboardDatePicker
-                                            fullWidth
-                                            label='Date Picker'
-                                            value={macthDate}
-                                            onChange={handleDate}
-                                        />
-                                </MuiPickersUtilsProvider>   
-                            </Grid>
-                            <Grid item xs={10}>
-                            <Button variant='contained' fullWidth type='submit' className={classes.submitBtn}>Save tip</Button>
-                            </Grid>
-                        </Grid> 
-                    </Container>
-                </form>
+                <Card>
+                    <CardContent>
+                    <Container maxWidth='xl' className='mt-5'>
+                        <form onSubmit={handleSubmit} style={{padding: '0'}}>
+                                <Grid container spacing={6} className={classes.inputHolder}>
+                                    <Grid item md={6} xs={10} >
+                                        <TextField label='League' fullWidth name='League'/>
+                                    </Grid>
+                                    <Grid item md={6} xs={10}>
+                                        <FormControl fullWidth>
+                                            <InputLabel>Tips</InputLabel>
+                                            <Select
+                                                value={tipValue}
+                                                onChange={handleTipValue}
+                                            >
+                                                <MenuItem value={'1'} fullWidth>1</MenuItem>
+                                                <MenuItem value={'1x'}>1x</MenuItem>
+                                                <MenuItem value={'2'}>2</MenuItem>
+                                                <MenuItem value={'2x'}>2x</MenuItem>
+                                                <MenuItem value={'Over 2.5'}>Over 2.5</MenuItem>
+                                                <MenuItem value={'Under 2.5'}>Over 2.5</MenuItem>
+                                                <MenuItem value={'BTTS'}>BTTS</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                    <Grid item md={6} xs={10}>
+                                        <TextField label='Team 1' fullWidth name='Team1'/>
+                                    </Grid>
+                                    <Grid item md={6} xs={10}>
+                                        <TextField label='Team 2' fullWidth name='Team2'/>
+                                    </Grid>
+                                    <Grid item md={6} xs={10}>
+                                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                                <KeyboardTimePicker
+                                                    fullWidth
+                                                    label='Time Picker'
+                                                    value={macthTime}
+                                                    onChange={handleTime}
+                                                />
+                                        </MuiPickersUtilsProvider>        
+                                    </Grid>
+                                    <Grid item md={6} xs={10}>
+                                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                                <KeyboardDatePicker
+                                                    fullWidth
+                                                    label='Date Picker'
+                                                    value={macthDate}
+                                                    onChange={handleDate}
+                                                />
+                                        </MuiPickersUtilsProvider>   
+                                    </Grid>
+                                    <Grid item md={12} xs={10}>
+                                    <Button variant='contained' fullWidth type='submit' className={classes.submitBtn}>Save tip</Button>
+                                    </Grid>
+                                </Grid> 
+                        </form>
+                        </Container>
+                        </CardContent>
+                </Card>
+                
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',
