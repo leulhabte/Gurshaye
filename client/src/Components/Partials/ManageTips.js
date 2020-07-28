@@ -8,7 +8,7 @@ import {Equalizer, TrackChanges} from '@material-ui/icons';
 import {Table, TableContainer, TableHead, TableBody, 
 TableCell, TableRow, Paper, Container, Grid, Button, 
 Dialog, DialogContent, DialogActions, DialogContentText,
-TextField, FormControl, InputLabel, Select, MenuItem, Typography, IconButton} from '@material-ui/core';
+TextField, FormControl, InputLabel, Select, MenuItem, Typography, IconButton, Snackbar} from '@material-ui/core';
 import {withRouter} from 'react-router-dom';
 import {
     MuiPickersUtilsProvider,
@@ -23,6 +23,8 @@ const ManageTips = (props)=>{
     const classes = useStyles();
     const [dataId, setDatas] = React.useState('');
     const [open, setOpen] = React.useState(false);
+    const [openSnack, handleSnack] = React.useState(false);
+    const [openSnack2, handleSnack2] = React.useState(false);
     const [data, setValue] = React.useState({});
     const [tipValue, setTip] = React.useState(1);
     const [dialog, setDialog] = React.useState(false);
@@ -53,15 +55,12 @@ const ManageTips = (props)=>{
         .then(res=>{
             handleDialog();
             props.history.push('/manage');
+            handleSnack(!openSnack);
         });
     }
 
     const handleOpen = ()=>{
         setOpen(!open);
-    }
-
-    let rediretPage = ()=>{
-        window.location.reload(false);
     }
 
     const handleTipValue = (event)=>{
@@ -90,8 +89,9 @@ const ManageTips = (props)=>{
         
         axios.put(`http://localhost:8000/edit/${data._id}`, tipData)
         .then(res=>{
-            rediretPage();
-            console.log(res);
+            handleOpen();
+            props.history.push('/manage');
+            handleSnack2(!openSnack2);
         })
     }
 
@@ -183,9 +183,8 @@ const ManageTips = (props)=>{
                         <Paper className={classes.paperHeading2}>
                             <div className="d-flex">
                                 <TrackChanges className="ml-2"/>
-                                <Typography component='h4' className="ml-5">Changes Made</Typography>
+                                <Typography component='h4' className="ml-5">Manage inserted tips</Typography>
                             </div>
-                            <Typography component='h4' className="mr-4">3</Typography>
                         </Paper>
                     </Grid>
                 </Grid>                  
@@ -237,6 +236,28 @@ const ManageTips = (props)=>{
                     </TableBody>
                 </Table>
                 </TableContainer>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center'
+                    }}
+                        open={openSnack}
+                        onClose={handleSnack}
+                        message="Successfully Deleted"
+                        autoHideDuration={4000}
+                >
+            </Snackbar>
+            <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right'
+                    }}
+                        open={openSnack2}
+                        onClose={handleSnack2}
+                        message="Successfully Updated"
+                        autoHideDuration={4000}
+                >
+            </Snackbar>
             </Container> 
             : <Loading/>}
                

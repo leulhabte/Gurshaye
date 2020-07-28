@@ -32,11 +32,12 @@ const StatBody = ()=>{
             res.data.Leagues.map(data=>{
                 leagues.push(data.name);
                 count.push(data.count);
+                return data;
             });
             const lable = {labels: leagues}
             setOption(lable);
             setSeries(count);
-        })
+        });
     }
 
     const callStat = ()=>{
@@ -46,7 +47,9 @@ const StatBody = ()=>{
             const datas = [];
             res.data.statistics.map(data=>{
                 label.push(data.name);
-                datas.push(data.count);});
+                datas.push(data.count);
+                return data;
+            });
             const opt = {
                 chart: {
                     id: "basic-bar"

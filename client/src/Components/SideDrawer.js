@@ -2,7 +2,7 @@ import React from 'react';
 import {AppBar, Hidden, Drawer, 
 Divider, List, Toolbar, IconButton, 
 Typography, ListItemIcon, ListItemText, ListItem, Box, Tooltip} from '@material-ui/core';
-import {Menu, Info, ContactMail, Create, Airplay, InsertChart, Settings, Person, ExitToApp, BorderColor, Dashboard} from '@material-ui/icons';
+import {Menu, Info, ContactMail, Create, Airplay, InsertChart, Settings, ExitToApp, BorderColor, House} from '@material-ui/icons';
 import useStyles from '../Styling';
 import {Link} from 'react-router-dom'
 
@@ -48,10 +48,10 @@ const SideDrawer = (props)=>{
             <Divider className={classes.divider} variant="middle"/>
             <List>
                 <Box className={classes.listHeader}><Typography>User Profile</Typography></Box>
-                <ListItem>
+                {/* <ListItem>
                     <ListItemIcon><Person className={classes.listIcon}/></ListItemIcon>
                     <ListItemText className={classes.listText}>{props.data}</ListItemText>
-                </ListItem>
+                </ListItem> */}
                 <Link className={classes.listText} to='/edit' onClick={handleDrawer}>
                     <ListItem button>
                         <ListItemIcon><BorderColor className={classes.listIcon}/></ListItemIcon>
@@ -76,10 +76,13 @@ const SideDrawer = (props)=>{
     const dashBoard = (
         <div>
             <List>
-                <ListItem>
-                    <ListItemIcon><Dashboard className={classes.IconColor}/></ListItemIcon>
-                    <ListItemText style={{color: 'white'}}>Dashboard</ListItemText>
-                </ListItem>
+                <Link className={classes.listText} to='/'>
+                    <ListItem>
+                        <ListItemIcon><House className={classes.IconColor}/></ListItemIcon>
+                        <ListItemText style={{color: 'white'}}>Home Page</ListItemText>
+                    </ListItem>
+                </Link>
+
             </List>
             <Divider className={classes.divider} variant="middle"/>
         </div>
@@ -91,8 +94,8 @@ const SideDrawer = (props)=>{
                 <Toolbar>
                     <IconButton className={classes.menuButton} onClick={handleDrawer}><Menu/></IconButton>
                     <Box flexGrow={1} display="flex" flexDirection="row-reverse">
-                        <Tooltip title="About Us" arrow><IconButton><Info/></IconButton></Tooltip>
-                        <Tooltip title="Contact Us" arrow><IconButton><ContactMail/></IconButton></Tooltip>
+                        <Tooltip title="About Us" arrow><IconButton><Link to='/about'><Info/></Link></IconButton></Tooltip>
+                        <Tooltip title="Contact Us" arrow><IconButton><Link to='/contact'><ContactMail/></Link></IconButton></Tooltip>
                     </Box>
                 </Toolbar>
             </AppBar>

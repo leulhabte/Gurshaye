@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const tips = require('./api/routes/tips');
 const session = require('express-session');
 const passport = require('passport');
+const path = require('path');
 
 dotenv.config();
 
@@ -16,13 +17,6 @@ mongoose.connect(`mongodb+srv://leulhabte:${process.env.MONGO_PASS}@cluster0-sai
 ).then(console.log('Database connected...')).catch(err=>{console.log(err)});
 
 const app = express();
-
-// app.use(session({
-//     secret: 'keyboard cat',
-//     resave: false,
-//     saveUninitialized: true
-// }));
-
 
 const user = require('./api/routes/user');
 
@@ -58,5 +52,14 @@ app.use((error, req, res, next)=>{
         message: error.message
     })
 });
+
+if(process.env.NODE_ENV == 'production'){
+    //set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res)=>{
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 module.exports = app;

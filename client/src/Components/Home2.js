@@ -2,6 +2,7 @@ import React from 'react';
 import useStyles from '../Styling'
 import {Container, Typography, Grid, Card, CardActionArea, CardActions, CardContent, Button, CardHeader} from '@material-ui/core';
 import {Create, Airplay, InsertChart, Settings} from '@material-ui/icons';
+import {Link} from 'react-router-dom'
 
 const Home = (props)=>{
 
@@ -35,7 +36,7 @@ const Home = (props)=>{
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size='small' color="primary">Get Started</Button>
+                                <Button size='small' color="primary"><Link to='/add'>Get Started</Link></Button>
                             </CardActions>
                         </Card>
                     </Grid>
@@ -55,7 +56,7 @@ const Home = (props)=>{
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size='small' color="primary">Get Started</Button>
+                                <Button size='small' color="primary"><Link to='/view'>Get Started</Link></Button>
                             </CardActions>
                         </Card>
                     </Grid>
@@ -76,7 +77,7 @@ const Home = (props)=>{
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size='small' color="primary">Get Started</Button>
+                                <Button size='small' color="primary"><Link to='/manage'>Get Started</Link></Button>
                             </CardActions>
                         </Card>
                     </Grid>
@@ -97,7 +98,7 @@ const Home = (props)=>{
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size='small' color="primary">Get Started</Button>
+                                <Button size='small' color="primary"><Link to='stats'>Get Started</Link></Button>
                             </CardActions>
                         </Card>
                     </Grid>

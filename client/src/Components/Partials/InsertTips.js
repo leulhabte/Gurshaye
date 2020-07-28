@@ -47,8 +47,7 @@ const  FormFill = ()=>{
         .then(res=>{
             console.log(res);
         });
-        setOpen(true)
-        console.log(tipData);
+        setOpen(true);
     }
 
         const classes = useStyles();

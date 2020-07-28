@@ -31,7 +31,7 @@ const SignUp =(props)=>{
                     }
                 }
                 if(res.data.type === 2){
-                    alert("User already Exsist Operation Canceled");
+                    alert("User already Exsist Operation canceled");
                 }
                 if(res.data.type === 1){
                     props.history.push('/login');

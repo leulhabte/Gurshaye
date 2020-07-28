@@ -46,6 +46,7 @@ const Table: React.FC<ChildComponentProps> = ({history})=>{
     const handleClick = ()=>{
         selected.map(data=>{
             callApi(data._id);
+            return data;
         });
         history.push('/stats');   
     }
@@ -61,7 +62,6 @@ const Table: React.FC<ChildComponentProps> = ({history})=>{
         axios.get('http://localhost:8000/unchecked2')
         .then(res=>{
             setData(res.data.tip);
-            console.log(res.data);
             setCheck(true);
         })
     }

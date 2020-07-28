@@ -33,7 +33,6 @@ const InTable = ()=>{
                 setProgress(true);
                 setSuccess(false);
                 for(x of ids){
-                    console.log(x);
                     callApi(x)
                 }
             }
@@ -48,7 +47,6 @@ const InTable = ()=>{
         .then(res=>{
             setProgress(false);
             setSuccess(true);
-            console.log(res.data);
         });
     }
 
@@ -62,7 +60,6 @@ const InTable = ()=>{
                 setCheck(true)
             }
             setLoading(true)
-            console.log(res.data)
         })
     }
 

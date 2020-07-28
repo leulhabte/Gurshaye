@@ -4,7 +4,7 @@ import Loading from './Loading';
 import useStyles from '../../Styling';
 import {Link} from 'react-router-dom';
 import {Grid, Typography, Paper, Card, CardContent, Container, IconButton} from '@material-ui/core'
-import {DoneAll, HighlightOff, Grain} from '@material-ui/icons';
+import {DoneAll, HighlightOff, AssignmentTurnedIn} from '@material-ui/icons';
 
 const StatHeader = ()=>{
 
@@ -81,7 +81,7 @@ const StatHeader = ()=>{
                                 </Paper>
                                 <Card>
                                 <CardContent style={{paddingBottom: '2.4rem'}}>
-                                    <Typography variant='h5'>Select Incorrect Tips <IconButton><Link to='/fill'><Grain/></Link></IconButton></Typography>
+                                    <Typography variant='h5'>Select Incorrect Tips <IconButton><Link to='/fill'><AssignmentTurnedIn/></Link></IconButton></Typography>
                                 </CardContent>
                                 </Card>
                         </Paper>
