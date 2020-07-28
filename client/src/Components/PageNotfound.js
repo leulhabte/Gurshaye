@@ -1,9 +1,12 @@
 import React from 'react';
+import {Jumbotron} from 'react-bootstrap';
 
 const PageNotfound = ()=>{
     return(
         <div>
-            <h2 className="text-center">404 Page Not Found</h2>
+            <Jumbotron className="text-center">
+                <h3>404 Page Not Found</h3>
+            </Jumbotron>
         </div>
     );
 }

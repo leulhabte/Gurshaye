@@ -43,7 +43,7 @@ const  FormFill = ()=>{
             date: macthDate,
             tip: tipValue
         }
-        axios.post('http://localhost:8000/save', tipData)
+        axios.post('save/', tipData)
         .then(res=>{
             console.log(res);
         });

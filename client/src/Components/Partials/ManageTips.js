@@ -34,7 +34,7 @@ const ManageTips = (props)=>{
     const [macthTime, setTime] = React.useState(new Date('2014-08-18T21:11:54'));
     const [macthDate, setDate] = React.useState(new Date('2014-08-18T21:11:54'));
     const callApi = ()=>{
-        axios.get('http://localhost:8000/posts')
+        axios.get('posts/')
         .then(res=>{
             setData(res.data.data);
             setCount(res.data.Total);
@@ -51,7 +51,7 @@ const ManageTips = (props)=>{
     }
 
     const handleAction = ()=>{
-        axios.delete(`http://localhost:8000/remove/${dataId}`)
+        axios.delete(`remove/${dataId}`)
         .then(res=>{
             handleDialog();
             props.history.push('/manage');
@@ -87,7 +87,7 @@ const ManageTips = (props)=>{
             tip: tipValue
         }            
         
-        axios.put(`http://localhost:8000/edit/${data._id}`, tipData)
+        axios.put(`edit/${data._id}`, tipData)
         .then(res=>{
             handleOpen();
             props.history.push('/manage');

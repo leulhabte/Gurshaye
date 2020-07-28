@@ -12,7 +12,7 @@ const StatHeader = ()=>{
     const [incorrect, setDataIn] = React.useState(0);
     const [loading, setLoading] = React.useState(false);
     const callApi = ()=>{
-        axios.get('http://localhost:8000/overall')
+        axios.get('overall/')
         .then(res=>{
             setData(res.data.correct);
             setDataIn(res.data.Incorrect);
@@ -35,7 +35,7 @@ const StatHeader = ()=>{
                                 <Paper className={classes.paperHeading}>
                                     <div className="d-flex">
                                         <DoneAll className="ml-2"/>
-                                        <Typography component='h4' className="ml-5">Correct Predictions</Typography>
+                                        <Typography component='h4' className="ml-5">Predictions</Typography>
                                     </div>
                                 </Paper>
                                 <Card>

@@ -52,14 +52,14 @@ const Table: React.FC<ChildComponentProps> = ({history})=>{
     }
 
     const callApi = (id: String)=>{
-        axios.post('http://localhost:8000/incorrect/'+id)
+        axios.post('incorrect/'+id)
         .then(res=>{
             console.log(res.data);
         });
     }
 
     const getList = ()=>{
-        axios.get('http://localhost:8000/unchecked2')
+        axios.get('unchecked2/')
         .then(res=>{
             setData(res.data.tip);
             setCheck(true);

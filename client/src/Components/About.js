@@ -6,7 +6,7 @@ class About extends Component{
         return (
             <Jumbotron>
                 <h2>About Us</h2>
-                <p>React and NodeJs Express App Development</p>
+                <p>Mobile, Web and Desktop App Development Team</p>
             </Jumbotron>
         );
     }

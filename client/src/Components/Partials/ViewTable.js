@@ -12,7 +12,7 @@ const ViewTable = ()=>{
     const [totalCount, setCount] = React.useState(0);
     const [loading, setLoading] = React.useState(false);
     const callApi = ()=>{
-        axios.get('http://localhost:8000/posts')
+        axios.get('posts/')
         .then(res=>{
             setData(res.data.data);
             setCount(res.data.Total);

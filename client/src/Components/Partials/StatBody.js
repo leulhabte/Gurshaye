@@ -25,7 +25,7 @@ const StatBody = ()=>{
     ]);
     
     const callApi = ()=>{
-        axios.get('http://localhost:8000/leagues')
+        axios.get('leagues/')
         .then(res=>{
             const leagues = [];
             const count = [];
@@ -41,7 +41,7 @@ const StatBody = ()=>{
     }
 
     const callStat = ()=>{
-        axios.get('http://localhost:8000/stat')
+        axios.get('stat/')
         .then(res=>{
             const label = [];
             const datas = [];
